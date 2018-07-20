@@ -1,0 +1,16 @@
+<p>
+  XYZ System
+</p>
+<button *ngIf="barCodeArray.length != 0" (click)="post()">Post</button>
+<br>
+{{consignedFromId}}
+<app-select (onBlur)="myBlur($event)" (AfterUpdate)="myAfterUpdate($event)" (onFocus)="myFocus($event)" [(ctrlSource)]="consignedFromId" [optionList]="myOptionList"></app-select>
+<br>
+  <app-text-input #txtBarCode [(ctrlSource)]="barCodeScanned" (AfterUpdate)="appendBarCode()">
+
+  </app-text-input>
+
+  <ul >
+    <li  *ngFor="let b of bc"><button>Delete</button>   {{b}}</li>
+  </ul>
+

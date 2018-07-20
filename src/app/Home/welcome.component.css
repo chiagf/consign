@@ -1,0 +1,13 @@
+li {
+    font-size: large;
+    background-color: brown
+}
+
+div.panel-body {
+    background-color: brown;
+}
+
+div.panel-heading {
+   font-size: x-large; 
+   background-color: brown
+}

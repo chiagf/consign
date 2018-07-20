@@ -1,0 +1,32 @@
+﻿<!-- main app container -->
+
+<div id="xxx">
+    
+    <nav class='navbar navbar-default'>
+            <!-- <a class='navbar-brand'>{{pageTitle}}</a> -->
+        <div class='container-fluid'>            
+                <ul class='nav navbar-nav'>
+                        <div *ngIf="ifLogIn()" id="rt" class='nav navbar-nav'>
+                            <li>{{curUserName()}}</li>
+                                <li   ><a [routerLink]="['/logout']">Log out</a></li> 
+                        </div>
+                    <li><a [routerLink]="['/welcome']">Home</a></li>
+                    <li><a [routerLink]="['/tracking']">Tracking</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/home']">Product List</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/receive']">Receive</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/dispatch']">Dispatch</a></li>
+                    <li *ngIf="!ifLogIn()"><a [routerLink]="['/login']">Login</a></li> 
+                    
+                          
+                   
+                               
+                </ul>                        
+        </div> 
+               
+    </nav>
+    
+    
+</div>
+<div class='container'>
+    <router-outlet></router-outlet>
+</div>

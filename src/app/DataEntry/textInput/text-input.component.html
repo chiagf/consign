@@ -1,0 +1,14 @@
+<!--<p>-->
+  <!--text-input works!-->
+
+<!--</p>-->
+
+
+<p></p>
+<!--<input [(ngModel)]="myInput" (blur)="myBlur($event)" (focus)="myFocus($event)">-->
+<input [ngModel]="ctrlSource" (blur)="myBlur($event)" (focus)="myFocus($event)"
+        (keydown)="myKeyDown($event)" [disabled]="isLocked" >
+<!--ctrlSource : {{ctrlSource}}-->
+<!--oldValue : {{currentValue}}-->
+<!--cSource : {{cSource}}-->
+<!--count :  {{count}}-->
