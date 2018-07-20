@@ -10,28 +10,33 @@ import 'rxjs/add/observable/of';
 
 import { IConsign } from '../models/consign';
 import {CurrentTxnInfo} from '../models/txnInfo'
+import { ConstantService } from '../../constant.service'
 
 @Injectable()
 export class ConsignService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private constantService: ConstantService) { }
 
-  saveConsignments(consigns: string[]): Observable<CurrentTxnInfo> {
-    // https://stackoverflow.com/questions/50606752/angular-using-the-equivalent-of-requestoptions-of-http-with-httpclient
-    let url = 'https://fe9a4581.ngrok.io/data/PostDocument'
-    const options = {
-      headers: new HttpHeaders().append('Content-Type', 'application/json'),
-      params: new HttpParams().append('key', 'value')
-    }
+  wrapBody(txnType:string, obj1, obj2, obj3, obj4) {
     const h = new CurrentTxnInfo() ;
     h.TxnType = 'AA';
     const body = {
       Header: JSON.stringify(h),
-      Data1: JSON.stringify(consigns),
-      Data2: JSON.stringify({}),
-      Data3: JSON.stringify({}),
-      Data4: JSON.stringify({})
+      Data1: JSON.stringify(obj1),
+      Data2: JSON.stringify(obj2),
+      Data3: JSON.stringify(obj3),
+      Data4: JSON.stringify(obj4)
     };
+    return body;
+  }
+
+  postDocuments(body): Observable<CurrentTxnInfo> {
+    // https://stackoverflow.com/questions/50606752/angular-using-the-equivalent-of-requestoptions-of-http-with-httpclient
+    let url = this.constantService.API_POSTDOC; // 'https://fe9a4581.ngrok.io/data/PostDocument'
+    const options = {
+      headers: new HttpHeaders().append('Content-Type', 'application/json'),
+      params: new HttpParams().append('key', 'value')
+    }    
     return this.http.post<CurrentTxnInfo>(url, body, options)
    
   }

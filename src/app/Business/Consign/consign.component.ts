@@ -106,7 +106,8 @@ export class ConsignComponent implements OnInit {
   }
 
   httpPost(bcs: string[]) {
-      return this.consignService.saveConsignments(bcs)
+      const body = this.consignService.wrapBody('consign', {}, bcs, {}, {})
+      return this.consignService.postDocuments(body)
   }
 
   post() {
@@ -118,7 +119,7 @@ export class ConsignComponent implements OnInit {
         alert("Posted");
       },
       error => {
-        alert(error)
+        alert(error.message)
       }
     );
     

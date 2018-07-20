@@ -27,6 +27,7 @@ import { BusinessModule } from './Business/business.module';
 import { TextInputComponent } from './DataEntry/textInput/text-input.component';
 import { SelectComponent } from './DataEntry/select/select.component';
 import { ConsignService } from './Business/consign/consign.service';
+import { ConstantService } from './constant.service';
 // import {TextInputComponent}  from './DataEntry/textInput/text-input.component'
 // import { AuthenticationService } from './auth/_services/authentication.service';
 
@@ -70,7 +71,8 @@ import { ConsignService } from './Business/consign/consign.service';
 
         // provider used to create fake backend
         // fakeBackendProvider
-        ConsignService
+        ConsignService,
+        ConstantService
     ],
     bootstrap: [AppComponent]
 })
