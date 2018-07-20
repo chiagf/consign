@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HttpModule } from '@angular/common/http';
 
 // used to create fake backend
 // import { fakeBackendProvider } from './_helpers/index';
@@ -25,6 +26,7 @@ import { ConsignComponent } from './Business/consign/consign.component';
 import { BusinessModule } from './Business/business.module';
 import { TextInputComponent } from './DataEntry/textInput/text-input.component';
 import { SelectComponent } from './DataEntry/select/select.component';
+import { ConsignService } from './Business/consign/consign.service';
 // import {TextInputComponent}  from './DataEntry/textInput/text-input.component'
 // import { AuthenticationService } from './auth/_services/authentication.service';
 
@@ -68,6 +70,7 @@ import { SelectComponent } from './DataEntry/select/select.component';
 
         // provider used to create fake backend
         // fakeBackendProvider
+        ConsignService
     ],
     bootstrap: [AppComponent]
 })

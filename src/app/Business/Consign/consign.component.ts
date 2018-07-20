@@ -5,6 +5,9 @@ import {SelectComponent} from '../../DataEntry/select/select.component';
 import { HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { IConsign } from '../models/Consign';
+import { ConsignService } from './consign.service'
+
 @Component({
   selector: 'app-consign',
   templateUrl: './consign.component.html',
@@ -31,7 +34,7 @@ export class ConsignComponent implements OnInit {
     return false;
   }
 
-  constructor() {   
+  constructor(private consignService: ConsignService) {   
    }
 
   ngOnInit() {
@@ -77,7 +80,10 @@ export class ConsignComponent implements OnInit {
     const a = this.barCodeScanned;
     if (a === '') { return; }
     this.barCodeArray.push(a);
-    this.bc = this.barCodeArray.reverse();
+    // this.bc = Object.assign({},this.barCodeArray);
+    // https://stackoverflow.com/questions/7486085/copying-array-by-value-in-javascript
+    this.bc = this.barCodeArray.slice();
+    this.bc.reverse();
     beep();
     // this.barCodeScanned = "";
     setTimeout(() => {
@@ -99,10 +105,23 @@ export class ConsignComponent implements OnInit {
 
   }
 
+  httpPost(bcs: string[]) {
+      return this.consignService.saveConsignments(bcs)
+  }
+
   post() {
-    this.barCodeArray = [];
-    this.bc = [];
-    alert("Posted");
+    this.httpPost(this.barCodeArray).subscribe(
+      res => {
+        alert(res)
+        this.barCodeArray = [];
+        this.bc = [];
+        alert("Posted");
+      },
+      error => {
+        alert(error)
+      }
+    );
+    
   }
 
   myFocus(e) {
