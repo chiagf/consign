@@ -4,7 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+// import { fakeBackendProvider } from './_helpers';
 
 import { AuthComponent }  from './auth.component';
 import { authRouting }        from './auth.routing';
@@ -45,7 +45,7 @@ import { LogoutComponent } from './logout/logout.component';
         },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     // bootstrap: [AppComponent]
 })

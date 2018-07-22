@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from '../_services';
+// import { HttpResponse } from '../../../../node_modules/@types/selenium-webdriver/http';
 
 @Component({
     moduleId: module.id.toString(),
@@ -9,7 +10,8 @@ import { AlertService, AuthenticationService } from '../_services';
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
+    // model: any = {};
+    model = {username: 'chiagf@gmail.com', password: '123456'}
     loading = false;
     returnUrl: string;
 
@@ -33,10 +35,26 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    this.authenticationService.currentUser = this.model.username;
+                    console.log(data);
+                    console.log(data.headers)
+                    console.log(data.headers.get('pragma'));
+                    console.log(data.headers.get('Set-Cookie'));
+                    this.loading = false;                    
                 },
                 error => {
+                    this.authenticationService.currentUser = '';
                     this.alertService.error(error);
+                    console.log(error)
                     this.loading = false;
                 });
+    }
+
+    testLogin() {
+        this.authenticationService.testLogin();
+    }
+
+    testLogout() {
+        this.authenticationService.testLogout();
     }
 }

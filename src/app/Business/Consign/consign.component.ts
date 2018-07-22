@@ -4,6 +4,7 @@ import {SelectComponent} from '../../DataEntry/select/select.component';
 
 import { HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/timeout';
 
 import { IConsign } from '../models/Consign';
 import { ConsignService } from './consign.service'
@@ -24,6 +25,7 @@ export class ConsignComponent implements OnInit {
   consignedFromId = '3';
   myOptionList = [{id: 1, name: 'Miri'}, {id: 2, name: 'Sibu'}, {id: 3, name: 'Kuching'}];
   canFocus = true;
+  loading: boolean = false;
 
   // https://stackoverflow.com/questions/35922071/warn-user-of-unsaved-changes-before-leaving-page
   @HostListener('window:beforeunload')
@@ -111,15 +113,18 @@ export class ConsignComponent implements OnInit {
   }
 
   post() {
-    this.httpPost(this.barCodeArray).subscribe(
+    this,this.loading = true;
+    this.httpPost(this.barCodeArray).timeout(16000).subscribe(
       res => {
         alert(res)
         this.barCodeArray = [];
         this.bc = [];
         alert("Posted");
+        this,this.loading = false;
       },
       error => {
         alert(error.message)
+        this,this.loading = false;
       }
     );
     
