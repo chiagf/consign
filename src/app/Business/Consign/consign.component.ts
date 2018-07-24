@@ -5,9 +5,13 @@ import {SelectComponent} from '../../DataEntry/select/select.component';
 import { HostListener } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/timeout';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router'
 
-import { IConsign } from '../models/Consign';
+import { Consign } from '../models/Consign';
 import { ConsignService } from './consign.service'
+import { CurrentTxnInfo } from '../models/txnInfo';
+
 
 @Component({
   selector: 'app-consign',
@@ -18,9 +22,10 @@ export class ConsignComponent implements OnInit {
 
   @ViewChild('txtBarCode') txtBarCode: TextInputComponent;
   @ViewChild(TextInputComponent) allInputs;
+  private sub: Subscription;
   barCodeScanned = '';
   bc:  string[] = [];
-  barCodeArray: string[] = [];
+  barCodeArray: any[] = [];
   consignedFrom: string;
   consignedFromId = '3';
   myOptionList = [{id: 1, name: 'Miri'}, {id: 2, name: 'Sibu'}, {id: 3, name: 'Kuching'}];
@@ -36,7 +41,8 @@ export class ConsignComponent implements OnInit {
     return false;
   }
 
-  constructor(private consignService: ConsignService) {   
+  constructor(private consignService: ConsignService,private route: ActivatedRoute,
+    private router: Router,) {   
    }
 
   ngOnInit() {
@@ -44,6 +50,13 @@ export class ConsignComponent implements OnInit {
       if (this.canFocus) this.txtBarCode.myElement.nativeElement.children[1].focus();
       this.txtBarCode.currentValue = '';
     }, 1000);
+
+    this.sub = this.route.params.subscribe(
+      params => {
+          let id = +params['id'];
+          // this.getProduct(id);
+      }
+  );
     
   }
 
@@ -81,7 +94,8 @@ export class ConsignComponent implements OnInit {
   appendBarCode() {
     const a = this.barCodeScanned;
     if (a === '') { return; }
-    this.barCodeArray.push(a);
+    let item = {barcode: a}
+    this.barCodeArray.push(item);
     // this.bc = Object.assign({},this.barCodeArray);
     // https://stackoverflow.com/questions/7486085/copying-array-by-value-in-javascript
     this.bc = this.barCodeArray.slice();
@@ -107,14 +121,49 @@ export class ConsignComponent implements OnInit {
 
   }
 
-  httpPost(bcs: string[]) {
-      const body = this.consignService.wrapBody('consign', {}, bcs, {}, {})
-      return this.consignService.postDocuments(body)
+  JS2ISODate(d: Date) {
+    // d in Fri Jun 09 2017 00:00:00 GMT+0800 (Malay Peninsula Standard Time) format
+    if (!d) return;
+    let ISODate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() ;
+    let hour = d.getHours();
+    let ISOHour = hour + ':';    
+    if ( hour < 10 ) {
+      ISOHour = '0' + hour + ':';
+    } 
+    let min = d.getMinutes();
+    let ISOMinute = min + ':';    
+    if ( min < 10 ) {
+      ISOMinute = '0' + min + ':';
+    } 
+    let seconds = d.getSeconds();
+    let ISOseconds = seconds.toString() ;    
+    if ( seconds < 10 ) {
+      ISOseconds = '0' + seconds;
+    } 
+    let ISOTime =  ISOHour + ISOMinute + ISOseconds;
+    
+    ISODate += 'T' + ISOTime; // 'T00:00:00';
+    return ISODate;
+  }
+
+  httpPost(bcs: any[]) {
+    const h = new CurrentTxnInfo() ;
+    h.TxnType = 'CONSIGN';
+    h.IntendedOperation = 1;
+    h.BookRefName = 'Consign';
+    let t1 = new Consign() ;
+    // let utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    let utc = new Date()
+    // t1.TxnDate = Date.now();
+    t1.TxnDate =this.JS2ISODate(utc);
+    const body = this.consignService.wrapBody(h,t1, bcs, {}, {})
+    return this.consignService.postDocuments(body)
   }
 
   post() {
     this,this.loading = true;
-    this.httpPost(this.barCodeArray).timeout(16000).subscribe(
+    // https://stackoverflow.com/questions/41320125/how-to-implement-http-post-timeout-with-last-rxjs-version
+    this.httpPost(this.barCodeArray).timeout(1600000).subscribe(
       res => {
         alert(res)
         this.barCodeArray = [];

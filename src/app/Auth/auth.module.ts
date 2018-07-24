@@ -17,13 +17,15 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { LogoutComponent } from './logout/logout.component';
+import { SharedModule } from '../myshare/shared.module';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        authRouting
+        authRouting,
+        SharedModule,        
     ],
     declarations: [
         AuthComponent,
@@ -31,7 +33,9 @@ import { LogoutComponent } from './logout/logout.component';
         HomeComponent,
         LoginComponent,
         LogoutComponent,
-        RegisterComponent
+        RegisterComponent,
+        // xLoadingComponent,
+        
     ],
     providers: [
         AuthGuard,

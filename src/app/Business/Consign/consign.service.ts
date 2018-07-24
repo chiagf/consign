@@ -17,11 +17,10 @@ export class ConsignService {
 
   constructor(private http: HttpClient, private constantService: ConstantService) { }
 
-  wrapBody(txnType:string, obj1, obj2, obj3, obj4) {
-    const h = new CurrentTxnInfo() ;
-    h.TxnType = 'AA';
+  wrapBody(currentTxnInfo: CurrentTxnInfo, obj1, obj2, obj3, obj4) {
+    
     const body = {
-      Header: JSON.stringify(h),
+      Header: JSON.stringify(currentTxnInfo),
       Data1: JSON.stringify(obj1),
       Data2: JSON.stringify(obj2),
       Data3: JSON.stringify(obj3),
@@ -35,7 +34,8 @@ export class ConsignService {
     let url = this.constantService.API_POSTDOC; // 'https://fe9a4581.ngrok.io/data/PostDocument'
     const options = {
       headers: new HttpHeaders().append('Content-Type', 'application/json'),
-      params: new HttpParams().append('key', 'value')
+      params: new HttpParams().append('key', 'value'),
+      withCredentials: true
     }    
     return this.http.post<CurrentTxnInfo>(url, body, options)
    

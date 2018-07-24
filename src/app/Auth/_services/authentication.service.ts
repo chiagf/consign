@@ -52,15 +52,27 @@ export class AuthenticationService {
 
     testLogout()  {
         let url = this.constantService.API_ENDPOINT + "Account/LogOff"
-        this.http.post(url, {}, { responseType: 'text', withCredentials: true, }).subscribe(
-            res => {
-                console.log(res)
-                this.currentUser = '';
-            },
-            error => {
-                console.log(error)
-            }
-        );
+        // this.http.post(url, {}, { responseType: 'text', withCredentials: true, }).subscribe(
+        //     res => {
+        //         console.log(res)
+        //         this.currentUser = '';
+        //     },
+        //     error => {
+        //         console.log(error)
+        //     }
+        // );
+        return this.http.post(url, {}, { responseType: 'text', withCredentials: true, })
+          .map( (res) => {
+                return res;
+          })
+          .do((res) => {
+            console.log(res)
+            this.currentUser = '';
+          })
+          .catch((error) => {
+            console.error(error);
+            return Observable.throw(error.json().error || 'Server error');
+          })
     }
 
     private extractData(response: HttpResponse<any>) : HttpResponse<any>{

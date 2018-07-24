@@ -28,6 +28,9 @@ import { TextInputComponent } from './DataEntry/textInput/text-input.component';
 import { SelectComponent } from './DataEntry/select/select.component';
 import { ConsignService } from './Business/consign/consign.service';
 import { ConstantService } from './constant.service';
+// import { xLoadingComponent } from './xloading.component';
+import { SharedModule } from './myshare/shared.module';
+// import { LoadingComponent } from './share/loading/loading.component';
 // import {TextInputComponent}  from './DataEntry/textInput/text-input.component'
 // import { AuthenticationService } from './auth/_services/authentication.service';
 
@@ -40,6 +43,7 @@ import { ConstantService } from './constant.service';
         AuthModule,
         DataEntryModule,
         BusinessModule,
+        SharedModule,
         // RouterModule.forRoot([
         //     { path: 'welcome', component: WelcomeComponent },
         //     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -52,6 +56,7 @@ import { ConstantService } from './constant.service';
         ConsignComponent,
         TextInputComponent,
         SelectComponent,
+        // xLoadingComponent,
         
         // AlertComponent,
         // HomeComponent,

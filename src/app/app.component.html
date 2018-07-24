@@ -14,7 +14,7 @@
                     <li><a [routerLink]="['/tracking']">Tracking</a></li>
                     <li *ngIf="ifLogIn()"><a [routerLink]="['/home']">Product List</a></li>
                     <li *ngIf="ifLogIn()"><a [routerLink]="['/receive']">Receive</a></li>
-                    <li *ngIf="ifLogIn()"><a [routerLink]="['/dispatch']">Dispatch</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/dispatch/2']">Dispatch</a></li>
                     <li *ngIf="!ifLogIn()"><a [routerLink]="['/login']">Login</a></li> 
                     
                           
@@ -30,3 +30,4 @@
 <div class='container'>
     <router-outlet></router-outlet>
 </div>
+

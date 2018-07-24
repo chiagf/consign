@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
                 error => {
                     this.authenticationService.currentUser = '';
                     this.alertService.error(error);
-                    console.log(error)
+                    console.log(error);
+                    alert("Failed to Login");
                     this.loading = false;
                 });
     }
