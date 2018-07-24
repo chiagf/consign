@@ -33,7 +33,7 @@ export  class LogInGuard implements CanActivate {
 export  class ConsignEditGuard implements CanDeactivate<ConsignComponent> {
 
     canDeactivate(component: ConsignComponent): boolean {
-        if (component.barCodeArray.length !== 0) {
+        if (component.barcodeArray.length !== 0) {
             // let productName = component.productForm.get('productName').value || 'New Product';
             return confirm(`Navigate away and lose all changes?`);
 

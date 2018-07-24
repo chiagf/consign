@@ -6,6 +6,7 @@ import { LoginComponent } from './Auth/login/login.component';
 import { WelcomeComponent } from './Home/welcome.component';
 import { ConsignComponent } from './Business/consign/consign.component';
 import { ConsignEditGuard, LogInGuard } from './Business/business-guard.service';
+import { TrackComponent } from './Business/track/track.component';
 
 // import { HomeComponent } from './home/index';
 // import { LoginComponent } from './login/index';
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
     //{ path: '', component: WelcomeComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     { path: 'welcome', component: WelcomeComponent },
-    { path: 'dispatch/:id', canActivate: [LogInGuard], canDeactivate: [ConsignEditGuard], component: ConsignComponent },
+    { path: 'track/:id', component: TrackComponent },
+    { path: 'consign/:id', canActivate: [LogInGuard], canDeactivate: [ConsignEditGuard], component: ConsignComponent },    
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     // { path: 'login', component: LoginComponent },
     // { path: 'login', component: LoginComponent },

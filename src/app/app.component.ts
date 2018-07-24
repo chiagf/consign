@@ -17,6 +17,7 @@ import '../assets/app.css';
 })
 
 export class AppComponent {
+    
     [x: string]: any;
     pageTitle: string = 'Parcel Management';
 

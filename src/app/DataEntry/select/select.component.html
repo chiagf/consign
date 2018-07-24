@@ -1,5 +1,5 @@
 
   <select name="machine" (change)="myChange($event)" (blur)="myBlur($event)" (focus)="myFocus($event)" [(ngModel)]="ctrlSource" [disabled]="isLocked">
-    <option *ngFor='let opt of optionList' value={{myParseInt(opt.id)}} [ngValue]='opt.id' >{{opt.name}}</option>
+    <option *ngFor='let opt of optionList' value={{myParseInt(opt.Id)}} [ngValue]='opt.Id' >{{opt.Name}}</option>
   </select>
 

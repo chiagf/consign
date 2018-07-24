@@ -11,10 +11,10 @@
                                 <li   ><a [routerLink]="['/logout']">Log out</a></li> 
                         </div>
                     <li><a [routerLink]="['/welcome']">Home</a></li>
-                    <li><a [routerLink]="['/tracking']">Tracking</a></li>
+                    <li><a [routerLink]="['/track/1']">Tracking</a></li>
                     <li *ngIf="ifLogIn()"><a [routerLink]="['/home']">Product List</a></li>
-                    <li *ngIf="ifLogIn()"><a [routerLink]="['/receive']">Receive</a></li>
-                    <li *ngIf="ifLogIn()"><a [routerLink]="['/dispatch/2']">Dispatch</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/consign/1']">Receive</a></li>
+                    <li *ngIf="ifLogIn()"><a [routerLink]="['/consign/2']">Dispatch</a></li>                    
                     <li *ngIf="!ifLogIn()"><a [routerLink]="['/login']">Login</a></li> 
                     
                           

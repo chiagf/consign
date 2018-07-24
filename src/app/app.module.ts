@@ -26,7 +26,7 @@ import { ConsignComponent } from './Business/consign/consign.component';
 import { BusinessModule } from './Business/business.module';
 import { TextInputComponent } from './DataEntry/textInput/text-input.component';
 import { SelectComponent } from './DataEntry/select/select.component';
-import { ConsignService } from './Business/consign/consign.service';
+// import { ConsignService } from './Business/consign/consign.service';
 import { ConstantService } from './constant.service';
 // import { xLoadingComponent } from './xloading.component';
 import { SharedModule } from './myshare/shared.module';
@@ -53,15 +53,10 @@ import { SharedModule } from './myshare/shared.module';
     declarations: [
         AppComponent,
         WelcomeComponent,
-        ConsignComponent,
-        TextInputComponent,
-        SelectComponent,
-        // xLoadingComponent,
+        // ConsignComponent,
+        // TextInputComponent,
+        // SelectComponent,
         
-        // AlertComponent,
-        // HomeComponent,
-        // LoginComponent,
-        // RegisterComponent
     ],
     providers: [
         // AuthGuard,
@@ -76,7 +71,7 @@ import { SharedModule } from './myshare/shared.module';
 
         // provider used to create fake backend
         // fakeBackendProvider
-        ConsignService,
+        // ConsignService,
         ConstantService
     ],
     bootstrap: [AppComponent]

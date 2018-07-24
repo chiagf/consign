@@ -9,17 +9,17 @@ import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router'
 
 import { Consign, IConsign } from '../models/Consign';
-import { ConsignService } from './consign.service'
+import { ConsignService } from '../consign/consign.service'
 import { CurrentTxnInfo } from '../models/txnInfo';
 import { AuthenticationService } from '../../Auth/_services';
 
 
 @Component({
-  selector: 'app-consign',
-  templateUrl: './consign.component.html',
-  styleUrls: ['./consign.component.css']
+  selector: 'app-track',
+  templateUrl: './track.component.html',
+  styleUrls: ['./track.component.css']
 })
-export class ConsignComponent implements OnInit {
+export class TrackComponent implements OnInit {
 
   @ViewChild('txtBarCode') txtBarCode: TextInputComponent;
   @ViewChild(TextInputComponent) allInputs;
