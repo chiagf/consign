@@ -48,4 +48,8 @@ export class AppComponent {
     curUserName() {
         return this.authenticationService.currentUserName();
     }
+
+    print() {
+        this.router.navigate(['/printlist'])
+    }
  }

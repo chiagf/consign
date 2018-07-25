@@ -85,6 +85,8 @@ export class TrackComponent implements OnInit {
 
   post() {
     this.httpPost();
+
+    let printWindow = window.open('http://localhost:4200/assets/static/printlist.html', '_blank');
     // this,this.loading = true;
     // https://stackoverflow.com/questions/41320125/how-to-implement-http-post-timeout-with-last-rxjs-version
     // this.httpPost(this.barcodeArray).timeout(1600000).subscribe(
