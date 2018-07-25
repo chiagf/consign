@@ -14,25 +14,12 @@ import {AuthModule} from './Auth/auth.module';
 import {DataEntryModule} from './DataEntry/dataEntry.module'
 
 import { RouterModule } from '@angular/router';
-// import { AlertComponent } from './_directives/index';
-// import { AuthGuard } from './_guards/index';
-// import { JwtInterceptor } from './_helpers/index';
-// import { AlertService, AuthenticationService, UserService } from './_services/index';
-// import { HomeComponent } from './home/index';
-// import { LoginComponent } from './login/index';
-// import { RegisterComponent } from './register/index';
+
 import { WelcomeComponent } from './Home/welcome.component';
-import { ConsignComponent } from './Business/consign/consign.component';
 import { BusinessModule } from './Business/business.module';
-import { TextInputComponent } from './DataEntry/textInput/text-input.component';
-import { SelectComponent } from './DataEntry/select/select.component';
-// import { ConsignService } from './Business/consign/consign.service';
 import { ConstantService } from './constant.service';
-// import { xLoadingComponent } from './xloading.component';
 import { SharedModule } from './myshare/shared.module';
-// import { LoadingComponent } from './share/loading/loading.component';
-// import {TextInputComponent}  from './DataEntry/textInput/text-input.component'
-// import { AuthenticationService } from './auth/_services/authentication.service';
+
 
 @NgModule({
     imports: [

@@ -1,40 +1,19 @@
+<textarea  [(ngModel)]="userInput" ></textarea>
+{{userInput}}
+<input>
+<button class="btn btn-primary" [disabled]="loading"  (click)="post()">Post</button>
+
 <div class="col-md-6 col-md-offset-3">
 
 
-  <xapp-loading *ngIf="loading"></xapp-loading>
   
-  <div class="row">
-  <h2>{{mainLabel}}</h2>
-  </div>
   
-  <div class="row">
-    <div for="S1" class="col-sm-4">
-      <div>
-      <label>{{station1Label}}</label>
-      <app-select name="S1" (onBlur)="myBlur($event)" (AfterUpdate)="myAfterUpdate($event)" (onFocus)="myFocus($event)" [(ctrlSource)]="Station1Id" [optionList]="myOptionList"></app-select>
-    </div>
-    </div>
-    <div class="col-sm-4">
-      <label for="S2" >{{station2Label}}</label>
-  <app-select name="S2" (onBlur)="myBlur($event)" (AfterUpdate)="myAfterUpdate($event)" (onFocus)="myFocus($event)" [(ctrlSource)]="Station2Id" [optionList]="myOptionList"></app-select>
-    </div>
-    
-    
-  </div> 
   
-  <div class="row">
-      <div class="col-sm-8">
-        <app-text-input #txtBarCode [(ctrlSource)]="barCodeScanned" (AfterUpdate)="appendBarCode()">
-        </app-text-input>
-      </div>
-      <div class="col-sm-4">
-          <button class="btn btn-primary" [disabled]="loading" *ngIf="barcodeArray.length != 0" (click)="post()">Post</button>
-        </div>
-  </div>
   
     
   
     <ul >
-      <li  *ngFor="let b of bc"><button>Delete</button>   {{b}}</li>
+    this.userInputArray = this.userInput.split(' ');
+    <li  *ngFor="let b of userInputArray"><button>Delete</button>   {{b}}</li>
     </ul>
   </div>

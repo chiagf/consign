@@ -13,10 +13,11 @@ import { ConsignComponent } from './consign/consign.component';
 import { SharedModule } from '../myshare/shared.module';
 import { ConsignService } from './consign/consign.service';
 
+
 @NgModule({
     imports: [
         // BrowserModule,
-        // FormsModule,
+        FormsModule,
         // HttpClientModule,
         CommonModule,
         DataEntryModule,

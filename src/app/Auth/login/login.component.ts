@@ -56,6 +56,13 @@ export class LoginComponent implements OnInit {
     }
 
     testLogout() {
-        this.authenticationService.testLogout();
+        this.authenticationService.testLogout().subscribe(
+            res => {
+                console.log(res)
+            },
+            error => {
+                console.log(error)
+            }
+        );;
     }
 }

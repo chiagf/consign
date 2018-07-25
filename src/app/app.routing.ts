@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     //{ path: '', component: WelcomeComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     { path: 'welcome', component: WelcomeComponent },
-    { path: 'track/:id', component: TrackComponent },
+    { path: 'track', component: TrackComponent },
     { path: 'consign/:id', canActivate: [LogInGuard], canDeactivate: [ConsignEditGuard], component: ConsignComponent },    
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     // { path: 'login', component: LoginComponent },
